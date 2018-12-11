@@ -1,6 +1,7 @@
 package de.moyapro.netboot;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -19,10 +20,13 @@ public class HelloWorldTest {
   private MockMvc mockMvc;
 
   @Test
-  public void helloWorldShouldWork() throws Exception {
+  public void loadMap() throws Exception {
     this.mockMvc
-      .perform(get("/hello").param("name", "World"))
+      .perform(post("/loadMap").param("map", "."))
+      .andExpect(status().isOk());
+
+    this.mockMvc.perform(get("/map"))
       .andExpect(status().isOk())
-      .andExpect(content().string("Hello World"));
+      .andExpect(content().string("."));
   }
 }
