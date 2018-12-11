@@ -16,7 +16,6 @@ public class Game {
   private final EntityStore entityStore;
   private final MoveEngine moveEngine;
   private final BoardRenderer renderer;
-  private Player player;
 
   private Game(int width, int height) {
     moveEngine = new MoveEngine();
@@ -45,16 +44,15 @@ public class Game {
   @SuppressWarnings("WeakerAccess")
 
   public Game handleAction(char action) {
-    if ('h' == action) { moveEngine.move(player, MoveAction.LEFT, entityStore); }
-    if ('j' == action) { moveEngine.move(player, MoveAction.DOWN, entityStore); }
-    if ('k' == action) { moveEngine.move(player, MoveAction.UP, entityStore); }
-    if ('l' == action) { moveEngine.move(player, MoveAction.RIGHT, entityStore); }
+    if ('h' == action) { moveEngine.move(entityStore.getPlayer(), MoveAction.LEFT, entityStore); }
+    if ('j' == action) { moveEngine.move(entityStore.getPlayer(), MoveAction.DOWN, entityStore); }
+    if ('k' == action) { moveEngine.move(entityStore.getPlayer(), MoveAction.UP, entityStore); }
+    if ('l' == action) { moveEngine.move(entityStore.getPlayer(), MoveAction.RIGHT, entityStore); }
     return this;
   }
 
   public Game addPlayer(Pos pos) {
-    player = new Player();
-    entityStore.setObjectAtPosition(player, pos);
+    entityStore.setObjectAtPosition(new Player(), pos);
     return this;
   }
 

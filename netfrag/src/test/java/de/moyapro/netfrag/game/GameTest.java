@@ -87,6 +87,19 @@ public class GameTest {
   }
 
   @Test
+  public void _1x1withPlayerMoveAllDirections() {
+    assertEquals("Game should graphics correct after handleAction", "@",
+      Game
+        .getInstance(1, 1)
+        .addPlayer(new Pos(0, 0))
+        .handleAction('h')
+        .handleAction('j')
+        .handleAction('k')
+        .handleAction('l')
+        .render());
+  }
+
+  @Test
   public void _2x1withWall() {
     assertEquals("Game should graphics correct with walls", "▓▓",
       Game

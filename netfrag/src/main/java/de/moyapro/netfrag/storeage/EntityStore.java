@@ -3,6 +3,7 @@ package de.moyapro.netfrag.storeage;
 import de.moyapro.netfrag.api.Entity;
 import de.moyapro.netfrag.entities.EntityHelper;
 import de.moyapro.netfrag.entities.Floor;
+import de.moyapro.netfrag.entities.Player;
 import de.moyapro.netfrag.entities.Pos;
 import java.util.List;
 import java.util.function.UnaryOperator;
@@ -19,6 +20,8 @@ public class EntityStore {
   private int width;
   @Getter
   private int height;
+  @Getter
+  private Player player;
   private List<Entity> boardElements;
 
   public EntityStore(int width, int height) {
@@ -37,6 +40,7 @@ public class EntityStore {
       .filter(this::isNoLineBreak)
       .mapToObj(EntityHelper::getInstanceForEntityChar)
       .collect(Collectors.toList());
+    player = (Player) boardElements.stream().filter(e -> e instanceof Player).findAny().get();
   }
 
   private boolean isNoLineBreak(int c) {
@@ -58,11 +62,21 @@ public class EntityStore {
   }
 
   public void setObjectAtPosition(Entity entityToInsert, Pos pos) {
+    if (entityToInsert instanceof Player) {
+      this.player = (Player) entityToInsert;
+    }
     boardElements.set(width * pos.getRow() + pos.getCol(), entityToInsert);
   }
 
   public Pos getPositionOf(Entity entity) {
     int indexOf = boardElements.indexOf(entity);
     return new Pos(indexOf % width, indexOf / width);
+  }
+
+  public boolean isPositionOutsideOfMap(Pos newPosition) {
+    return 0 > newPosition.getCol()
+      || 0 > newPosition.getRow()
+      || width <= newPosition.getCol()
+      || height <= newPosition.getRow();
   }
 }

@@ -13,6 +13,9 @@ class MoveEngine {
   void move(Player player, MoveAction action, EntityStore entityStore) {
     Pos playerPosition = entityStore.getPositionOf(player);
     Pos newPosition = action.apply(playerPosition);
+    if (entityStore.isPositionOutsideOfMap(newPosition)) {
+      return;
+    }
     if (entityStore.getObjectAtPosition(newPosition) instanceof Impassable) {
       return;
     }
