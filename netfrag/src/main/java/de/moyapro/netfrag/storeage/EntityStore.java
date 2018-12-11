@@ -1,6 +1,7 @@
 package de.moyapro.netfrag.storeage;
 
 import de.moyapro.netfrag.api.Entity;
+import de.moyapro.netfrag.entities.EntityHelper;
 import de.moyapro.netfrag.entities.Floor;
 import de.moyapro.netfrag.entities.Pos;
 import java.util.List;
@@ -15,10 +16,10 @@ import lombok.Getter;
 public class EntityStore {
 
   @Getter
-  private final int width;
+  private int width;
   @Getter
-  private final int height;
-  private final List<Entity> boardElements;
+  private int height;
+  private List<Entity> boardElements;
 
   public EntityStore(int width, int height) {
     this.width = width;
@@ -29,6 +30,28 @@ public class EntityStore {
       .map(pos -> new Floor())
       .collect(Collectors.toList());
   }
+
+  public EntityStore(String mapToLoad) {
+    initWidthAndHeightFromMap(mapToLoad);
+    boardElements = mapToLoad.codePoints()
+      .filter(this::isNoLineBreak)
+      .mapToObj(EntityHelper::getInstanceForEntityChar)
+      .collect(Collectors.toList());
+  }
+
+  private boolean isNoLineBreak(int c) {
+    return "\n".codePointAt(0) != c;
+  }
+
+  private void initWidthAndHeightFromMap(String mapToLoad) {
+    width = mapToLoad.indexOf("\n");
+    height = mapToLoad.length() / width;
+    if (-1 == width) {
+      width = mapToLoad.length();
+      height = 1;
+    }
+  }
+
 
   public Entity getObjectAtPosition(Pos pos) {
     return boardElements.get(width * pos.getRow() + pos.getCol());

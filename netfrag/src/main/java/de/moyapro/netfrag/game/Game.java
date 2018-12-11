@@ -19,13 +19,23 @@ public class Game {
   private Player player;
 
   private Game(int width, int height) {
-    entityStore = new EntityStore(width, height);
     moveEngine = new MoveEngine();
     renderer = new BoardRenderer();
+    entityStore = new EntityStore(width, height);
+  }
+
+  private Game(String mapToLoad) {
+    moveEngine = new MoveEngine();
+    renderer = new BoardRenderer();
+    entityStore = new EntityStore(mapToLoad);
   }
 
   public static Game getInstance(int width, int height) {
     return new Game(width, height);
+  }
+
+  public static Game getInstance(String mapToLoad) {
+    return new Game(mapToLoad);
   }
 
   public String render() {

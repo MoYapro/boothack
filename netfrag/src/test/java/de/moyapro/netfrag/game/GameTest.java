@@ -152,5 +152,23 @@ public class GameTest {
         .render());
   }
 
+  @Test
+  public void loadMapBasic() {
+    String mapToLoad = ".";
+    assertEquals("Game should be able to load map", mapToLoad, Game.getInstance(mapToLoad).render());
+  }
 
+  @Test
+  public void loadMap() {
+    String mapToLoad = ""
+      + "..▓..\n"
+      + "▓M.M▓\n"
+      + "▓▓@▓▓";
+    String expectedResultMap = ""
+      + "..▓..\n"
+      + "▓M.M▓\n"
+      + "▓▓@▓▓";
+
+    assertEquals("Game should be able to load map", expectedResultMap, Game.getInstance(mapToLoad).render());
+  }
 }
