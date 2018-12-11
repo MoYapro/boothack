@@ -40,7 +40,7 @@ public class EntityStore {
       .filter(this::isNoLineBreak)
       .mapToObj(EntityHelper::getInstanceForEntityChar)
       .collect(Collectors.toList());
-    player = (Player) boardElements.stream().filter(e -> e instanceof Player).findAny().get();
+    boardElements.stream().filter(e -> e instanceof Player).findAny().ifPresent(player -> this.player = (Player) player);
   }
 
   private boolean isNoLineBreak(int c) {
