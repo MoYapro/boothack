@@ -186,4 +186,21 @@ public class GameTest {
 
     assertEquals("Game should be able to load map", expectedResultMap, game.loadMap(mapToLoad).handleAction('k').render());
   }
+
+  @Test
+  public void invalidActionShouldBeIgnored() {
+    String mapToLoad = ""
+      + "..▓..\n"
+      + "▓M.M▓\n"
+      + "▓▓@▓▓";
+    assertEquals("Should ignore inputs and not change the game state"
+      , mapToLoad
+      , game.loadMap(mapToLoad)
+        .handleAction('x')
+        .handleAction('u')
+        .handleAction('\t')
+        .handleAction('\n')
+        .render()
+    );
+  }
 }

@@ -5,7 +5,7 @@ import de.moyapro.netboot.entities.Pos;
 import org.springframework.data.repository.Repository;
 
 
-public interface GameRepository  extends Repository<Pos, Entity> {
+public interface GameRepository  extends Repository<Entity, Pos> {
 
   Entity save(Entity newEntity);
 }
