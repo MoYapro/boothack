@@ -28,14 +28,13 @@ public class EntityStore {
   private Player player;
   private List<Entity> boardElements;
 
-  public EntityStore loadMap(String mapToLoad) {
+  public void loadMap(String mapToLoad) {
     initWidthAndHeightFromMap(mapToLoad);
     boardElements = mapToLoad.codePoints()
       .filter(this::isNoLineBreak)
       .mapToObj(EntityHelper::getInstanceForEntityChar)
       .collect(Collectors.toList());
     boardElements.stream().filter(e -> e instanceof Player).findAny().ifPresent(player -> this.player = (Player) player);
-    return this;
   }
 
   private boolean isNoLineBreak(int c) {
@@ -75,7 +74,7 @@ public class EntityStore {
       || height <= newPosition.getRow();
   }
 
-  public EntityStore newGame(int width, int height) {
+  public void newGame(int width, int height) {
     this.width = width;
     this.height = height;
     boardElements = Stream
@@ -83,6 +82,5 @@ public class EntityStore {
       .limit(width * height)
       .map(pos -> new Floor())
       .collect(Collectors.toList());
-    return this;
   }
 }
