@@ -6,9 +6,8 @@ import de.moyapro.netboot.entities.Floor;
 import de.moyapro.netboot.entities.Player;
 import de.moyapro.netboot.entities.Pos;
 import java.util.List;
-import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -77,10 +76,9 @@ public class EntityStore {
   public void newGame(int width, int height) {
     this.width = width;
     this.height = height;
-    boardElements = Stream
-      .iterate(0, UnaryOperator.identity())
-      .limit(width * height)
-      .map(pos -> new Floor())
+    boardElements = IntStream
+      .range(0, width * height)
+      .mapToObj(pos -> new Floor())
       .collect(Collectors.toList());
   }
 }
