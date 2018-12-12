@@ -7,7 +7,6 @@ import de.moyapro.netboot.entities.Pos;
 import de.moyapro.netboot.entities.Wall;
 import de.moyapro.netboot.graphics.BoardRenderer;
 import de.moyapro.netboot.storeage.EntityStore;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,10 +38,6 @@ public class Game {
     moveEngine = new MoveEngine();
     renderer = new BoardRenderer();
     entityStore = new EntityStore().loadMap(mapToLoad);
-  }
-
-  static Game getInstance(int width, int height) {
-    return new Game(width, height);
   }
 
   static Game getInstance(String mapToLoad) {
@@ -78,11 +73,13 @@ public class Game {
     return this;
   }
 
-  public void loadMap(String map) {
+  public Game loadMap(String map) {
     entityStore.loadMap(map);
+    return this;
   }
 
-  public void newGame(int width, int height) {
+  Game newGame(int width, int height) {
     entityStore.newGame(width, height);
+    return this;
   }
 }
