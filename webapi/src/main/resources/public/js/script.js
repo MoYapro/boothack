@@ -15,27 +15,7 @@ const httpPost = (theUrl, data) => {
 };
 
 const start = () => {
-  document.getElementById('game').innerHTML = httpGet('http://localhost:8080/map')
-};
-
-const post = (path, params) => {
-  const method = "post"; // Set method to post by default if not specified.
-
-  const form = document.createElement("form");
-  form.setAttribute("method", method);
-  form.setAttribute("action", path);
-
-  for (const key in params) {
-    if (params.hasOwnProperty(key)) {
-      const hiddenField = document.createElement("input");
-      hiddenField.setAttribute("type", "hidden");
-      hiddenField.setAttribute("name", key);
-      hiddenField.setAttribute("value", params[key]);
-      form.appendChild(hiddenField);
-    }
-  }
-  document.body.appendChild(form);
-  form.submit();
+  updateView(httpGet('http://localhost:8080/map'));
 };
 
 // register key listener
@@ -43,5 +23,10 @@ window.onkeyup = (e) => {
   console.log('action', e.code);
   const data = new FormData();
   data.append('action', e.code);
-  httpPost('/action', data);
+  updateView(httpPost('/action', data));
 };
+
+const updateView = (newContent) => {
+  document.getElementById('game').innerHTML = newContent;
+};
+
