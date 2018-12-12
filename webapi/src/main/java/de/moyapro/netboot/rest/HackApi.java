@@ -1,6 +1,5 @@
 package de.moyapro.netboot.rest;
 
-import de.moyapro.netboot.entities.Pos;
 import de.moyapro.netboot.game.Game;
 import javax.jws.WebParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Provide REST API to make game functions accessable
+ */
 @RestController
 public class HackApi {
 
@@ -18,7 +20,6 @@ public class HackApi {
   public HackApi(Game game) {
     this.game = game;
   }
-
 
   @PostMapping("/loadMap")
   public void loadMap(@WebParam String map) {
