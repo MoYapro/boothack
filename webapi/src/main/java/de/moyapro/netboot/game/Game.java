@@ -16,28 +16,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class Game {
 
+  private final EntityStore entityStore;
+  private final MoveEngine moveEngine;
+  private final BoardRenderer renderer;
 
   @Autowired
   public Game(EntityStore entityStore, MoveEngine moveEngine, BoardRenderer renderer) {
     this.entityStore = entityStore;
     this.moveEngine = moveEngine;
     this.renderer = renderer;
-  }
-
-  private final EntityStore entityStore;
-  private final MoveEngine moveEngine;
-  private final BoardRenderer renderer;
-
-  private Game(int width, int height) {
-    moveEngine = new MoveEngine();
-    renderer = new BoardRenderer();
-    entityStore = new EntityStore().newGame(width, height);
-  }
-
-  private Game(String mapToLoad) {
-    moveEngine = new MoveEngine();
-    renderer = new BoardRenderer();
-    entityStore = new EntityStore().loadMap(mapToLoad);
   }
 
   public String render() {
