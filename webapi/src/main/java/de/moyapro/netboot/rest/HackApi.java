@@ -21,8 +21,10 @@ public class HackApi {
 
   @GetMapping("/map")
   public String getMap() {
-    game = Game.getInstance(40, 20);
-    game.addPlayer(new Pos(1, 1));
+    if (null == game) {
+      game = Game.getInstance(40, 20);
+      game.addPlayer(new Pos(1, 1));
+    }
     return game.render();
   }
 
