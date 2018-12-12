@@ -1,4 +1,4 @@
-package de.moyapro.netfrag.api;
+package de.moyapro.netboot.api;
 
 import java.util.function.UnaryOperator;
 

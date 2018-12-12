@@ -1,6 +1,6 @@
-package de.moyapro.netfrag.entities;
+package de.moyapro.netboot.entities;
 
-import de.moyapro.netfrag.api.Entity;
+import de.moyapro.netboot.api.Entity;
 
 /**
  * player itself

@@ -1,4 +1,4 @@
-package de.moyapro.netfrag.entities;
+package de.moyapro.netboot.entities;
 
 import lombok.AccessLevel;
 import lombok.Data;

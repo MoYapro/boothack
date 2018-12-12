@@ -1,12 +1,14 @@
-package de.moyapro.netfrag.game;
+package de.moyapro.netboot.game;
 
-import de.moyapro.netfrag.api.Impassable;
-import de.moyapro.netfrag.api.MoveAction;
-import de.moyapro.netfrag.entities.Floor;
-import de.moyapro.netfrag.entities.Player;
-import de.moyapro.netfrag.entities.Pos;
-import de.moyapro.netfrag.storeage.EntityStore;
+import de.moyapro.netboot.api.Impassable;
+import de.moyapro.netboot.api.MoveAction;
+import de.moyapro.netboot.entities.Floor;
+import de.moyapro.netboot.entities.Player;
+import de.moyapro.netboot.entities.Pos;
+import de.moyapro.netboot.storeage.EntityStore;
+import org.springframework.stereotype.Service;
 
+@Service
 class MoveEngine {
 
 

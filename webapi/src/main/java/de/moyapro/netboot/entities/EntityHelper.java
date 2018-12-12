@@ -1,6 +1,6 @@
-package de.moyapro.netfrag.entities;
+package de.moyapro.netboot.entities;
 
-import de.moyapro.netfrag.api.Entity;
+import de.moyapro.netboot.api.Entity;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.val;

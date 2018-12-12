@@ -18,7 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @WebMvcTest
 public class ApiTest {
 
-  String initialMap = ""
+  private String initialMap = ""
     + "..▓..\n"
     + "▓M.M▓\n"
     + "▓▓@▓▓";

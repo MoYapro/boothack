@@ -1,4 +1,4 @@
-package de.moyapro.netfrag.api;
+package de.moyapro.netboot.api;
 
 /**
  * All objects that the player cannot handleAction to must be represented by this interface.

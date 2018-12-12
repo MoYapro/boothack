@@ -1,17 +1,29 @@
-package de.moyapro.netfrag.game;
+package de.moyapro.netboot.game;
 
-import de.moyapro.netfrag.api.MoveAction;
-import de.moyapro.netfrag.entities.Monster;
-import de.moyapro.netfrag.entities.Player;
-import de.moyapro.netfrag.entities.Pos;
-import de.moyapro.netfrag.entities.Wall;
-import de.moyapro.netfrag.graphics.BoardRenderer;
-import de.moyapro.netfrag.storeage.EntityStore;
+import de.moyapro.netboot.api.MoveAction;
+import de.moyapro.netboot.entities.Monster;
+import de.moyapro.netboot.entities.Player;
+import de.moyapro.netboot.entities.Pos;
+import de.moyapro.netboot.entities.Wall;
+import de.moyapro.netboot.graphics.BoardRenderer;
+import de.moyapro.netboot.storeage.EntityStore;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Main game logic (for now)
  */
+@Service
 public class Game {
+
+
+  @Autowired
+  public Game(EntityStore entityStore, MoveEngine moveEngine, BoardRenderer renderer) {
+    this.entityStore = entityStore;
+    this.moveEngine = moveEngine;
+    this.renderer = renderer;
+  }
 
   private final EntityStore entityStore;
   private final MoveEngine moveEngine;
@@ -20,20 +32,20 @@ public class Game {
   private Game(int width, int height) {
     moveEngine = new MoveEngine();
     renderer = new BoardRenderer();
-    entityStore = new EntityStore(width, height);
+    entityStore = new EntityStore().newGame(width, height);
   }
 
   private Game(String mapToLoad) {
     moveEngine = new MoveEngine();
     renderer = new BoardRenderer();
-    entityStore = new EntityStore(mapToLoad);
+    entityStore = new EntityStore().loadMap(mapToLoad);
   }
 
-  public static Game getInstance(int width, int height) {
+  static Game getInstance(int width, int height) {
     return new Game(width, height);
   }
 
-  public static Game getInstance(String mapToLoad) {
+  static Game getInstance(String mapToLoad) {
     return new Game(mapToLoad);
   }
 
@@ -51,18 +63,26 @@ public class Game {
     return this;
   }
 
-  public Game addPlayer(Pos pos) {
+  Game addPlayer(Pos pos) {
     entityStore.setObjectAtPosition(new Player(), pos);
     return this;
   }
 
-  public Game addWall(Pos pos) {
+  Game addWall(Pos pos) {
     this.entityStore.setObjectAtPosition(new Wall(), pos);
     return this;
   }
 
-  public Game addMonster(Pos pos) {
+  Game addMonster(Pos pos) {
     this.entityStore.setObjectAtPosition(new Monster(), pos);
     return this;
+  }
+
+  public void loadMap(String map) {
+    entityStore.loadMap(map);
+  }
+
+  public void newGame(int width, int height) {
+    entityStore.newGame(width, height);
   }
 }

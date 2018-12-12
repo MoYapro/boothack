@@ -1,6 +1,6 @@
-package de.moyapro.netfrag.entities;
+package de.moyapro.netboot.entities;
 
-import de.moyapro.netfrag.api.Impassable;
+import de.moyapro.netboot.api.Impassable;
 
 /**
  * Impassable board object

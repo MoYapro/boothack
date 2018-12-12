@@ -1,6 +1,6 @@
-package de.moyapro.netfrag.api;
+package de.moyapro.netboot.api;
 
-import de.moyapro.netfrag.entities.Pos;
+import de.moyapro.netboot.entities.Pos;
 import java.util.function.UnaryOperator;
 
 /**

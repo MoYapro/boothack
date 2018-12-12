@@ -1,17 +1,18 @@
-package de.moyapro.netfrag.graphics;
+package de.moyapro.netboot.graphics;
 
-import static de.moyapro.netfrag.api.PredefinedFunction.increment;
+import static de.moyapro.netboot.api.PredefinedFunction.increment;
 
-import de.moyapro.netfrag.api.Entity;
-import de.moyapro.netfrag.entities.Pos;
-import de.moyapro.netfrag.storeage.EntityStore;
+import de.moyapro.netboot.api.Entity;
+import de.moyapro.netboot.entities.Pos;
+import de.moyapro.netboot.storeage.EntityStore;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
+import org.springframework.stereotype.Service;
 
 /**
  * Create outputString representing the state of the game
  */
+@Service
 public class BoardRenderer {
 
   public String render(EntityStore entityStore) {

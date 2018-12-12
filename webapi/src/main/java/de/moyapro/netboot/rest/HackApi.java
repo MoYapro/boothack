@@ -1,8 +1,9 @@
 package de.moyapro.netboot.rest;
 
-import de.moyapro.netfrag.entities.Pos;
-import de.moyapro.netfrag.game.Game;
+import de.moyapro.netboot.entities.Pos;
+import de.moyapro.netboot.game.Game;
 import javax.jws.WebParam;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,20 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HackApi {
 
-  private Game game;
+  private final Game game;
+
+  @Autowired
+  public HackApi(Game game) {
+    this.game = game;
+  }
 
 
   @PostMapping("/loadMap")
   public void loadMap(@WebParam String map) {
-    game = Game.getInstance(map);
+    game.loadMap(map);
   }
 
   @GetMapping("/map")
   public String getMap() {
-    if (null == game) {
-      game = Game.getInstance(40, 20);
-      game.addPlayer(new Pos(1, 1));
-    }
     return game.render();
   }
 

@@ -1,8 +1,8 @@
-package de.moyapro.netfrag.game;
+package de.moyapro.netboot.game;
 
 import static org.junit.Assert.assertEquals;
 
-import de.moyapro.netfrag.entities.Pos;
+import de.moyapro.netboot.entities.Pos;
 import org.junit.Test;
 
 /**

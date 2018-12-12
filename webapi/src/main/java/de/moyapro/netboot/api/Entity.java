@@ -1,4 +1,4 @@
-package de.moyapro.netfrag.api;
+package de.moyapro.netboot.api;
 
 /**
  * Superinterface for all the stuff in the game

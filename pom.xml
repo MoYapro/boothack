@@ -13,7 +13,6 @@
 
 <modules>
   <module>webapi</module>
-  <module>netfrag</module>
 </modules>
 
 </project>
