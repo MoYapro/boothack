@@ -1,12 +1,10 @@
 package de.moyapro.netboot.graphics;
 
-import static de.moyapro.netboot.api.PredefinedFunction.increment;
-
 import de.moyapro.netboot.api.Entity;
 import de.moyapro.netboot.entities.Pos;
 import de.moyapro.netboot.storeage.EntityStore;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,18 +14,16 @@ import org.springframework.stereotype.Service;
 public class BoardRenderer {
 
   public String render(EntityStore entityStore) {
-    return Stream
-      .iterate(0, increment)
-      .limit(entityStore.getHeight())
-      .map(rowNumber -> getLine(entityStore, rowNumber))
+    return IntStream
+      .range(0, entityStore.getHeight())
+      .mapToObj(rowNumber -> getLine(entityStore, rowNumber))
       .collect(Collectors.joining("\n"));
   }
 
   private String getLine(EntityStore entityStore, Integer rowNumber) {
-    return Stream
-      .iterate(0, increment)
-      .limit(entityStore.getWidth())
-      .map(colNumber -> renderElementAt(entityStore, new Pos(colNumber, rowNumber)))
+    return IntStream
+      .range(0, entityStore.getWidth())
+      .mapToObj(colNumber -> renderElementAt(entityStore, new Pos(colNumber, rowNumber)))
       .collect(Collectors.joining());
   }
 
