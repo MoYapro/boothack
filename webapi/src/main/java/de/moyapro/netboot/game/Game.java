@@ -40,15 +40,9 @@ public class Game {
     entityStore = new EntityStore().loadMap(mapToLoad);
   }
 
-  static Game getInstance(String mapToLoad) {
-    return new Game(mapToLoad);
-  }
-
   public String render() {
     return renderer.render(entityStore);
   }
-
-  @SuppressWarnings("WeakerAccess")
 
   public Game handleAction(char action) {
     if ('h' == action) { moveEngine.move(entityStore.getPlayer(), MoveAction.LEFT, entityStore); }
