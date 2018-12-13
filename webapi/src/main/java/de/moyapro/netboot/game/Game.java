@@ -39,17 +39,17 @@ public class Game {
     return this;
   }
 
-  Game addPlayer(Pos pos) {
+  public Game addPlayer(Pos pos) {
     entityStore.setObjectAtPosition(new Player(), pos);
     return this;
   }
 
-  Game addWall(Pos pos) {
+  public Game addWall(Pos pos) {
     this.entityStore.setObjectAtPosition(new Wall(), pos);
     return this;
   }
 
-  Game addMonster(Pos pos) {
+  public Game addMonster(Pos pos) {
     this.entityStore.setObjectAtPosition(new Monster(), pos);
     return this;
   }
@@ -59,7 +59,7 @@ public class Game {
     return this;
   }
 
-  Game newGame(int width, int height) {
+  public Game newGame(int width, int height) {
     entityStore.newGame(width, height);
     return this;
   }

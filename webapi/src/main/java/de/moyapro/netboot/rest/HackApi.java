@@ -1,5 +1,6 @@
 package de.moyapro.netboot.rest;
 
+import de.moyapro.netboot.entities.Pos;
 import de.moyapro.netboot.game.Game;
 import javax.jws.WebParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,10 @@ public class HackApi {
 
   @GetMapping("/map")
   public String getMap() {
-    return game.render();
+    return game
+      .newGame(40, 20)
+      .addPlayer(new Pos(1,1))
+      .render();
   }
 
   @PostMapping("/action")
