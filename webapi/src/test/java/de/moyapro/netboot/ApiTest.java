@@ -1,12 +1,9 @@
 package de.moyapro.netboot;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.Arrays;
-import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +28,6 @@ public class ApiTest {
 
     this.mockMvc
       .perform(post("/loadMap").param("map", initialMap))
-      .andExpect(status().isOk());
-    this.mockMvc.perform(get("/map"))
       .andExpect(status().isOk())
       .andExpect(content().string(initialMap));
   }

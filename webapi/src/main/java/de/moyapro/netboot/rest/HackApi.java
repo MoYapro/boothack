@@ -23,15 +23,17 @@ public class HackApi {
   }
 
   @PostMapping("/loadMap")
-  public void loadMap(@WebParam String map) {
-    game.loadMap(map);
+  public String loadMap(@WebParam String map) {
+    return game
+      .loadMap(map)
+      .render();
   }
 
   @GetMapping("/map")
   public String getMap() {
     return game
       .newGame(40, 20)
-      .addPlayer(new Pos(1,1))
+      .addPlayer(new Pos(1, 1))
       .render();
   }
 
@@ -41,7 +43,7 @@ public class HackApi {
       return game.render();
     }
     if (action.startsWith("Key")) {
-      action = action.substring(3, action.length());
+      action = action.substring(3);
     }
     if (1 != action.length()) {
       return game.render();
